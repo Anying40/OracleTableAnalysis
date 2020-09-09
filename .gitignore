@@ -3,3 +3,6 @@
 ################################################################################
 
 /.vs/OracleTableAnalysis/v15/Server/sqlite3/storage.ide-wal
+/.vs/OracleTableAnalysis/v15/Server/sqlite3/storage.ide-shm
+/.vs/OracleTableAnalysis/v15/Server/sqlite3/storage.ide
+/.vs/OracleTableAnalysis/v15/Server/sqlite3/db.lock
