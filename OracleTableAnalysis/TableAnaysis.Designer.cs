@@ -1,6 +1,6 @@
 ﻿namespace OracleTableAnalysis
 {
-    partial class Form1
+    partial class TableAnaysis
     {
         /// <summary>
         /// 必需的设计器变量。

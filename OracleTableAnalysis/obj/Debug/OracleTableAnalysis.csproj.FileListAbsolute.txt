@@ -1,7 +1,6 @@
 D:\Work\TEST\OracleTableAnalysis\OracleTableAnalysis\bin\Debug\OracleTableAnalysis.exe
 D:\Work\TEST\OracleTableAnalysis\OracleTableAnalysis\bin\Debug\OracleTableAnalysis.pdb
 D:\Work\TEST\OracleTableAnalysis\OracleTableAnalysis\obj\Debug\OracleTableAnalysis.csprojAssemblyReference.cache
-D:\Work\TEST\OracleTableAnalysis\OracleTableAnalysis\obj\Debug\OracleTableAnalysis.Form1.resources
 D:\Work\TEST\OracleTableAnalysis\OracleTableAnalysis\obj\Debug\OracleTableAnalysis.Properties.Resources.resources
 D:\Work\TEST\OracleTableAnalysis\OracleTableAnalysis\obj\Debug\OracleTableAnalysis.csproj.GenerateResource.cache
 D:\Work\TEST\OracleTableAnalysis\OracleTableAnalysis\obj\Debug\OracleTableAnalysis.csproj.CoreCompileInputs.cache
@@ -14,3 +13,4 @@ D:\Work\TEST\OracleTableAnalysis\OracleTableAnalysis\bin\Debug\Oracle.ManagedDat
 D:\Work\TEST\OracleTableAnalysis\OracleTableAnalysis\bin\Debug\Dapper.pdb
 D:\Work\TEST\OracleTableAnalysis\OracleTableAnalysis\bin\Debug\DapperExtensions.pdb
 D:\Work\TEST\OracleTableAnalysis\OracleTableAnalysis\obj\Debug\OracleTableAnalysis.csproj.CopyComplete
+D:\Work\TEST\OracleTableAnalysis\OracleTableAnalysis\obj\Debug\OracleTableAnalysis.TableAnaysis.resources

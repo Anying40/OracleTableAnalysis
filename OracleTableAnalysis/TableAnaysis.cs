@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
+using OracleTableAnalysis.Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,7 @@ using System.Windows.Forms;
 
 namespace OracleTableAnalysis
 {
-    public partial class Form1 : Form
+    public partial class TableAnaysis : Form
     {
         //实体模型路径
         //public static string modelpath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DAO");
@@ -59,7 +60,7 @@ namespace OracleTableAnalysis
         
         public string PATH => textBox1.Text;
         const string _SEQUENCE_SQL = "SELECT * FROM kf_shengjijb where jiaobenlx ='SEQUENCE' and JIAOBENNR like '%{0}%'";
-        public Form1()
+        public TableAnaysis()
         {
             InitializeComponent();
         }
