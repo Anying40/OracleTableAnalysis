@@ -28,6 +28,8 @@ namespace OracleTableAnalysis
         public string todbconnStr => textBoxMuBiao.Text;
         //缓存数据结构对象  如果存在 则不再去sourcedb中获取结构
         public static string SaveFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "sourceList.txt");
+        public static string SaveTablePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "tableList.txt");
+
         //生成的添加字段语句
         public static string SqlFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "SQL");
         public static string SqlAddFilePath = Path.Combine(SqlFilePath, "add.txt");
@@ -231,8 +233,26 @@ namespace OracleTableAnalysis
         {
             //记录所有的源数据库 数据结构
             List<SourceSaveList> sl = new List<SourceSaveList>();
+            List<string> tableNames = new List<string>();
+
             var sourceDB = new DapperHelper(sourcedbconnStr);
-            var tableNames = GetAllTableName();
+            if (File.Exists(SaveTablePath))
+            {
+                using (FileStream fs = new FileStream(SaveTablePath, FileMode.Open))
+                {
+                    using (StreamReader sw = new StreamReader(fs))
+                    {
+                        var ss = sw.ReadToEnd();
+                        tableNames = JsonConvert.DeserializeObject<List<string>>(ss);
+                    }
+                }
+            }
+            else
+            {
+                tableNames = GetAllTableName();
+            }
+
+               
             if (File.Exists(SaveFilePath))
             {
                 using (FileStream fs = new FileStream(SaveFilePath, FileMode.Open))
@@ -413,9 +433,9 @@ namespace OracleTableAnalysis
             //记录所有的源数据库 数据结构
             List<Views> viewList = new List<Views>();
             var sourceViewTemp = sourceDB.Conn.Query<Views>($"select view_name from user_views").ToList();
-            var toViewTemp = sourceDB.Conn.Query<Views>($"select view_name from user_views ").ToList();
+            var toViewTemp = toDB.Conn.Query<Views>($"select view_name from user_views ").ToList();
             var tableType = TableType.Split(',');
-            foreach (var viewse in toViewTemp)
+            foreach (var viewse in sourceViewTemp)
             {
                 foreach (var s in tableType)
                 {
@@ -431,8 +451,7 @@ namespace OracleTableAnalysis
             foreach (var viewse in otherView)
             {
                 sbView.Append(viewse.VIEW_NAME);
-                sbView.Append("\r\n");
-                sbView.Append("\r\n");
+                sbView.Append("\r\n"); 
             }
             if (false == System.IO.Directory.Exists(SqlFilePath))
             {
@@ -454,7 +473,13 @@ namespace OracleTableAnalysis
                     sw.WriteLine(JsonConvert.SerializeObject(sl));
                 }
             }
-          
+            using (FileStream fs = new FileStream(SaveTablePath, FileMode.Create))
+            {
+                using (StreamWriter sw = new StreamWriter(fs))
+                {
+                    sw.WriteLine(JsonConvert.SerializeObject(tableNames));
+                }
+            }
             using (FileStream fs = new FileStream(SqlAddFilePath, FileMode.Create))
             {
                 using (StreamWriter sw = new StreamWriter(fs))
