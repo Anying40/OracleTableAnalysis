@@ -60,7 +60,7 @@ namespace OracleTableAnalysis
             return res;
         }
         
-        public string PATH => textBox1.Text;
+        public string PATH => AppDomain.CurrentDomain.BaseDirectory;
         const string _SEQUENCE_SQL = "SELECT * FROM kf_shengjijb where jiaobenlx ='SEQUENCE' and JIAOBENNR like '%{0}%'";
         public TableAnaysis()
         {
@@ -170,9 +170,13 @@ namespace OracleTableAnalysis
                 String line;
                 while ((line = sr.ReadLine()) != null)
                 {
-                    if (line.Length > 0 && line.Contains("create table "))
+                    if (line.Length > 0 && (line.Contains("create table ")|| line.Contains("CREATE TABLE ")))
                     {
                         line = line.Replace("create table ", "");
+                        line = line.Replace("CREATE TABLE ", "");
+                        line = line.Replace("CREATE TABLE ", "");
+                        line = line.Replace("  \"", "");
+                        line = line.Replace("\" ", "");
                         list.Add(line);
                     }
                 }
@@ -534,6 +538,7 @@ namespace OracleTableAnalysis
             xinXi = xinXi.Replace("\"HIS4\".", "");
             xinXi = xinXi.Replace("\"HIS5\".", "");
             xinXi = xinXi.Replace("\"HIS6\".", "");
+            xinXi = xinXi.Replace("\"HIS6YS\".", "");
             return xinXi;
         }
 
